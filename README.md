@@ -38,11 +38,15 @@ firebase deploy
 
 GitHub Pages:
 
-```bash
-npm run deploy:gh-pages
-```
+This repository includes a GitHub Actions workflow that deploys automatically whenever changes are pushed to `master`.
 
-Set `base` in `vite.config.ts` if deploying to a repository subpath, for example `/repository-name/`.
+1. In the GitHub repository, open **Settings** > **Pages**.
+2. Under **Build and deployment**, select **GitHub Actions** as the source.
+3. Commit and push the `.github/workflows/deploy-pages.yml` and `vite.config.ts` changes.
+4. Open the **Actions** tab and wait for **Deploy GitHub Pages** to succeed.
+5. Your site will be available at `https://chiranjibi-kunda.github.io/SCAAA-Website-/`.
+
+The Vite base path is already configured for this repository. The `deploy:gh-pages` script remains available as a manual alternative, but should not be used together with the GitHub Actions deployment.
 
 ## Content
 
