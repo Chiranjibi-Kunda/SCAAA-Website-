@@ -32,11 +32,25 @@ const routeTitles: Record<string, string> = {
   "/contact": "Contact SCAAA",
 };
 
+const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
+
+function getRoutePath(pathname = window.location.pathname) {
+  const route = basePath && pathname.startsWith(basePath)
+    ? pathname.slice(basePath.length)
+    : pathname;
+  return route || "/";
+}
+
+export function toAppHref(href: string) {
+  if (!href.startsWith("/")) return href;
+  return `${basePath}${href}` || "/";
+}
+
 function usePath() {
-  const [path, setPath] = useState(() => window.location.pathname);
+  const [path, setPath] = useState(() => getRoutePath());
 
   useEffect(() => {
-    const onPop = () => setPath(window.location.pathname);
+    const onPop = () => setPath(getRoutePath());
     window.addEventListener("popstate", onPop);
     return () => window.removeEventListener("popstate", onPop);
   }, []);
@@ -45,7 +59,7 @@ function usePath() {
 }
 
 export function navigateTo(href: string) {
-  window.history.pushState({}, "", href);
+  window.history.pushState({}, "", toAppHref(href));
   window.dispatchEvent(new PopStateEvent("popstate"));
   window.scrollTo({ top: 0, behavior: "smooth" });
 }

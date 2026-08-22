@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { navigateTo } from "../App";
+import { navigateTo, toAppHref } from "../App";
 
 interface LinkProps {
   href: string;
@@ -11,7 +11,7 @@ interface LinkProps {
 export function Link({ href, children, className, onClick }: LinkProps) {
   return (
     <a
-      href={href}
+      href={toAppHref(href)}
       className={className}
       onClick={(event) => {
         if (href.startsWith("/")) {
