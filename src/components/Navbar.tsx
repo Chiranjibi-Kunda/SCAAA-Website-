@@ -60,12 +60,13 @@ export function Navbar({ locale, onLocaleChange, onSearch }: NavbarProps) {
             <Search size={18} />
           </button>
           <Link href="/membership" className="button button-small nav-cta">Join SCAAA</Link>
-          <button className="icon-button mobile-toggle" aria-label="Open menu" onClick={() => setOpen(true)} title="Menu">
+          <button className="icon-button mobile-toggle" aria-label="Open menu" aria-expanded={open} onClick={() => setOpen(true)} title="Menu">
             <Menu size={22} />
           </button>
         </div>
       </nav>
 
+      <button className={`mobile-scrim ${open ? "is-open" : ""}`} aria-label="Close menu" onClick={() => setOpen(false)} tabIndex={open ? 0 : -1} />
       <div className={`mobile-panel ${open ? "is-open" : ""}`} aria-hidden={!open}>
         <div className="mobile-panel-head">
           <img src={logoUrl} alt="" />
