@@ -2,15 +2,17 @@ import { useState } from "react";
 import { X } from "lucide-react";
 import { gallery, imagery } from "../data/content";
 import { PageHero, SectionHeader } from "../components/Sections";
+import { tr, useLocale } from "../lib/i18n";
 
 export default function AstrophotographyPage() {
+  const locale = useLocale();
   const [selected, setSelected] = useState<(typeof gallery)[number] | null>(null);
 
   return (
     <>
-      <PageHero eyebrow="Astrophotography" title="Member Gallery and Image of the Month" copy="A visual-first gallery with lightbox behavior and metadata fields ready for verified member submissions." image={imagery.nebula} />
+      <PageHero eyebrow={tr(locale, "Astrophotography")} title={tr(locale, "Member Gallery and Image of the Month")} copy="A visual-first gallery with lightbox behavior and metadata fields ready for verified member submissions." image={imagery.nebula} />
       <section className="section">
-        <SectionHeader title="Gallery" />
+        <SectionHeader title={tr(locale, "Gallery")} />
         <div className="masonry">
           {gallery.map((image) => (
             <button key={image.id} onClick={() => setSelected(image)} className="gallery-tile">

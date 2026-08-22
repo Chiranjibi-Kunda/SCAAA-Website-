@@ -1,15 +1,17 @@
 import { articles, imagery } from "../data/content";
 import { ArticleCard, PageHero, SectionHeader } from "../components/Sections";
+import { tr, useLocale } from "../lib/i18n";
 
 const categories = ["Start Here", "Observe", "Explore", "Create", "Participate"];
 
 export default function LearnPage() {
+  const locale = useLocale();
   return (
     <>
-      <PageHero eyebrow="Learn Astronomy" title="A Practical Astronomy Learning Hub" copy="Structured for beginner guides, telescope basics, observing notes, astrophotography tutorials and citizen science resources." image={imagery.workshop} />
+      <PageHero eyebrow={tr(locale, "Learn Astronomy")} title={tr(locale, "A Practical Astronomy Learning Hub")} copy="Structured for beginner guides, telescope basics, observing notes, astrophotography tutorials and citizen science resources." image={imagery.workshop} />
       <section className="section">
         <div className="tabs">{categories.map((category) => <button key={category}>{category}</button>)}</div>
-        <SectionHeader title="Featured Lessons" />
+        <SectionHeader title={tr(locale, "Featured Lessons")} />
         <div className="card-grid three">{articles.map((article) => <ArticleCard article={article} key={article.id} />)}</div>
       </section>
     </>

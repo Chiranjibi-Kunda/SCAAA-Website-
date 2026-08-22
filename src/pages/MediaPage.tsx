@@ -1,6 +1,7 @@
 import { Camera, Download, Newspaper, Play } from "lucide-react";
 import { imagery } from "../data/content";
 import { PageHero, SectionHeader } from "../components/Sections";
+import { tr, useLocale } from "../lib/i18n";
 
 const mediaItems = [
   { icon: Camera, title: "Photo Gallery", copy: "Verified SCAAA event photographs can be organized here." },
@@ -10,11 +11,12 @@ const mediaItems = [
 ];
 
 export default function MediaPage() {
+  const locale = useLocale();
   return (
     <>
-      <PageHero eyebrow="Media Center" title="SCAAA in Images, Video and Press" copy="Media resources for Samanta Chandra Shekhar Amateur Astronomers' Association, structured for galleries, press releases, coverage and downloads." image={imagery.moon} />
+      <PageHero eyebrow={tr(locale, "Media Center")} title={tr(locale, "SCAAA in Images, Video and Press")} copy="Media resources for Samanta Chandra Shekhar Amateur Astronomers' Association, structured for galleries, press releases, coverage and downloads." image={imagery.moon} />
       <section className="section">
-        <SectionHeader title="Media Library" />
+        <SectionHeader title={tr(locale, "Media Library")} />
         <div className="card-grid four">{mediaItems.map((item) => <article className="program-card" key={item.title}><item.icon /><h3>{item.title}</h3><p>{item.copy}</p></article>)}</div>
       </section>
     </>

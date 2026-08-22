@@ -4,6 +4,7 @@ import { Footer } from "./components/Footer";
 import { CelestialMotion } from "./components/CelestialMotion";
 import { Navbar } from "./components/Navbar";
 import { SearchOverlay } from "./components/SearchOverlay";
+import { LocaleContext } from "./lib/i18n";
 import { events, articles, gallery, publications } from "./data/content";
 import AboutPage from "./pages/AboutPage";
 import AstrophotographyPage from "./pages/AstrophotographyPage";
@@ -112,12 +113,12 @@ export default function App() {
   })();
 
   return (
-    <>
+    <LocaleContext.Provider value={locale}>
       <CelestialMotion />
       <Navbar locale={locale} onLocaleChange={setLocale} onSearch={() => setSearchOpen(true)} />
       <main>{page}</main>
       <Footer />
       <SearchOverlay isOpen={searchOpen} onClose={() => setSearchOpen(false)} items={searchItems} />
-    </>
+    </LocaleContext.Provider>
   );
 }

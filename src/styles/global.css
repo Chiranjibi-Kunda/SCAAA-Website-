@@ -1154,21 +1154,25 @@ h3 {
 
   .nav-shell {
     min-height: 68px;
-    gap: 8px;
+    justify-content: space-between;
+    gap: 10px;
     padding-inline: 14px;
   }
 
-  .brand img { width: 44px; height: 44px; }
+  .brand { min-width: 66px; }
 
-  .nav-actions { gap: 6px; }
+  .brand img { width: 66px; height: 66px; }
+
+  .nav-actions { flex: 1; justify-content: flex-end; gap: 8px; }
 
   .nav-actions select {
     min-height: 42px;
-    padding: 8px;
+    width: 72px;
+    padding: 8px 6px;
     font-size: 0.82rem;
   }
 
-  .icon-button { width: 42px; height: 42px; }
+  .icon-button { width: 40px; height: 40px; }
 
   .hero {
     min-height: max(680px, 100svh);
@@ -1254,7 +1258,7 @@ h3 {
     display: none;
   }
 
-  .nav-actions select { max-width: 92px; }
+  .nav-actions select { max-width: 72px; }
 
   .mobile-panel { width: min(390px, 90vw); }
 }

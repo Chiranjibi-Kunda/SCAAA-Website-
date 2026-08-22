@@ -2,6 +2,7 @@ import type { CSSProperties, ReactNode } from "react";
 import { CalendarDays, ChevronRight, MapPin, Telescope } from "lucide-react";
 import type { Article, EventItem } from "../types/content";
 import { Link } from "./Link";
+import { tr, useLocale } from "../lib/i18n";
 
 export function SectionHeader({ eyebrow, title, copy }: { eyebrow?: string; title: string; copy?: string }) {
   return (
@@ -27,29 +28,31 @@ export function PageHero({ eyebrow, title, copy, image, children }: { eyebrow: s
 }
 
 export function EventCard({ event }: { event: EventItem }) {
+  const locale = useLocale();
   return (
     <article className="content-card event-card">
       <img src={event.image} alt="" loading="lazy" />
       <div>
         <span className="tag">{event.category}</span>
-        {event.isPlaceholder && <span className="tag tag-warm">Placeholder</span>}
+        {event.isPlaceholder && <span className="tag tag-warm">{tr(locale, "Placeholder")}</span>}
         <h3>{event.title}</h3>
         <p><CalendarDays size={16} /> {event.date} · {event.time}</p>
         <p><MapPin size={16} /> {event.location}</p>
         <p>{event.summary}</p>
-        <Link href="/events" className="text-link">View details <ChevronRight size={16} /></Link>
+        <Link href="/events" className="text-link">{tr(locale, "View details")} <ChevronRight size={16} /></Link>
       </div>
     </article>
   );
 }
 
 export function ArticleCard({ article }: { article: Article }) {
+  const locale = useLocale();
   return (
     <article className="content-card">
       <img src={article.image} alt="" loading="lazy" />
       <div>
         <span className="tag">{article.category}</span>
-        {article.isPlaceholder && <span className="tag tag-warm">Draft</span>}
+        {article.isPlaceholder && <span className="tag tag-warm">{tr(locale, "Draft")}</span>}
         <h3>{article.title}</h3>
         <p>{article.summary}</p>
         <p className="meta">{article.readingTime} · {article.difficulty ?? "General"} · {article.author}</p>

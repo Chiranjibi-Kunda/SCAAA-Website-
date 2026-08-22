@@ -1,7 +1,7 @@
 import { ChevronDown, Menu, Search, X } from "lucide-react";
 import { useState } from "react";
 import { navGroups } from "../data/navigation";
-import { locales } from "../lib/i18n";
+import { locales, tr, useLocale } from "../lib/i18n";
 import type { Locale } from "../types/content";
 import { Link } from "./Link";
 import logoUrl from "../assets/scaaa-logo.jpeg";
@@ -14,6 +14,7 @@ interface NavbarProps {
 
 export function Navbar({ locale, onLocaleChange, onSearch }: NavbarProps) {
   const [open, setOpen] = useState(false);
+  const activeLocale = useLocale();
   const primaryGroups = navGroups.filter((group) => ["About Us", "Learn Astronomy", "Outreach Programs"].includes(group.label));
   const moreGroups = navGroups.filter((group) => !primaryGroups.includes(group));
 
@@ -29,10 +30,10 @@ export function Navbar({ locale, onLocaleChange, onSearch }: NavbarProps) {
         </Link>
 
         <div className="desktop-nav">
-          <Link href="/" className="nav-link">Home</Link>
+          <Link href="/" className="nav-link">{tr(activeLocale, "Home")}</Link>
           {primaryGroups.map((group) => (
             <div className="nav-item" key={group.label}>
-              <Link href={group.href} className="nav-link">{group.label}</Link>
+              <Link href={group.href} className="nav-link">{tr(activeLocale, group.label)}</Link>
               <div className="mega-menu">
                 {group.children.map((child) => (
                   <Link href={group.href} key={child}>{child}</Link>
@@ -42,11 +43,11 @@ export function Navbar({ locale, onLocaleChange, onSearch }: NavbarProps) {
           ))}
           <div className="nav-item">
             <button className="nav-link nav-more" type="button" aria-haspopup="true">
-              More <ChevronDown size={14} aria-hidden="true" />
+              {tr(activeLocale, "More")} <ChevronDown size={14} aria-hidden="true" />
             </button>
             <div className="mega-menu more-menu">
               {moreGroups.map((group) => (
-                <Link href={group.href} key={group.label}>{group.label}</Link>
+                <Link href={group.href} key={group.label}>{tr(activeLocale, group.label)}</Link>
               ))}
             </div>
           </div>
@@ -59,7 +60,7 @@ export function Navbar({ locale, onLocaleChange, onSearch }: NavbarProps) {
           <button className="icon-button" onClick={onSearch} aria-label="Search website" title="Search">
             <Search size={18} />
           </button>
-          <Link href="/membership" className="button button-small nav-cta">Join SCAAA</Link>
+          <Link href="/membership" className="button button-small nav-cta">{tr(activeLocale, "Join SCAAA")}</Link>
           <button className="icon-button mobile-toggle" aria-label="Open menu" aria-expanded={open} onClick={() => setOpen(true)} title="Menu">
             <Menu size={22} />
           </button>
@@ -74,9 +75,9 @@ export function Navbar({ locale, onLocaleChange, onSearch }: NavbarProps) {
             <X size={22} />
           </button>
         </div>
-        <Link href="/" onClick={() => setOpen(false)}>Home</Link>
+        <Link href="/" onClick={() => setOpen(false)}>{tr(activeLocale, "Home")}</Link>
         {navGroups.map((group) => (
-          <Link href={group.href} key={group.label} onClick={() => setOpen(false)}>{group.label}</Link>
+          <Link href={group.href} key={group.label} onClick={() => setOpen(false)}>{tr(activeLocale, group.label)}</Link>
         ))}
       </div>
     </header>
