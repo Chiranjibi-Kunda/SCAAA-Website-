@@ -1,5 +1,5 @@
 import { lazy, Suspense, useState } from "react";
-import type { CSSProperties } from "react";
+import type { CSSProperties, PointerEvent } from "react";
 import { ArrowRight, Globe2, Moon, RadioTower, Sparkles, Telescope } from "lucide-react";
 import { articles, celestialEvent, events, gallery, imagery, impactStats, outreachPrograms } from "../data/content";
 import { t, tr } from "../lib/i18n";
@@ -13,16 +13,36 @@ const CosmicEnvironment = lazy(() => import("../components/CosmicEnvironment").t
 
 export default function HomePage({ locale }: { locale: Locale }) {
   const [awardIndex, setAwardIndex] = useState(0);
+  const [hologramFocus, setHologramFocus] = useState({ x: 0, y: 0 });
   const award = samantaChandrasekharAwards[awardIndex];
+
+  const updateHologramFocus = (event: PointerEvent<HTMLElement>) => {
+    const bounds = event.currentTarget.getBoundingClientRect();
+    setHologramFocus({
+      x: ((event.clientX - bounds.left) / bounds.width - 0.5) * 2,
+      y: ((event.clientY - bounds.top) / bounds.height - 0.5) * 2,
+    });
+  };
+
   return (
     <>
-      <section className="hero cosmic-hero">
+      <section
+        className="hero cosmic-hero"
+        onPointerMove={updateHologramFocus}
+        onPointerLeave={() => setHologramFocus({ x: 0, y: 0 })}
+        style={{ "--hologram-x": hologramFocus.x, "--hologram-y": hologramFocus.y } as CSSProperties}
+      >
         <Suspense fallback={null}><CosmicEnvironment /></Suspense>
         <div className="cosmic-veil" />
-        <aside className="heritage-sigil">
-          <img src={hologramPortrait} alt="Holographic interpretation of Samanta Chandrasekhar" />
-          <span>Samanta Chandrasekhar</span>
-          <small>ସାମନ୍ତ ଚନ୍ଦ୍ରଶେଖର</small>
+        <aside className="hero-hologram" aria-label="Holographic interpretation of Samanta Chandrasekhar">
+          <div className="hologram-figure">
+            <img src={hologramPortrait} alt="Holographic interpretation of Samanta Chandrasekhar" />
+            <span className="hologram-scanlines" aria-hidden="true" />
+            <span className="hologram-rim" aria-hidden="true" />
+          </div>
+          <div className="hologram-pedestal" aria-hidden="true"><span /><span /><span /></div>
+          <div className="hologram-particles" aria-hidden="true"><i /><i /><i /><i /><i /></div>
+          <p>Samanta Chandrasekhar<br /><small>ସାମନ୍ତ ଚନ୍ଦ୍ରଶେଖର</small></p>
         </aside>
         <div className="hero-content">
           <p className="eyebrow">From Odisha to the Stars · Since 1993</p>
