@@ -307,6 +307,163 @@ textarea {
   will-change: background-position;
 }
 
+.cosmic-hero {
+  isolation: isolate;
+  background: #02040e;
+  animation: none;
+}
+
+.cosmic-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.cosmic-canvas canvas { width: 100% !important; height: 100% !important; }
+
+.cosmic-veil {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(2,4,14,0.96) 0%, rgba(2,4,14,0.75) 40%, rgba(2,4,14,0.16) 72%),
+    linear-gradient(0deg, rgba(2,4,14,0.98), transparent 45%);
+}
+
+.heritage-sigil {
+  position: absolute;
+  z-index: 3;
+  right: max(28px, calc((100vw - 1480px) / 2));
+  top: 100px;
+  display: grid;
+  width: 112px;
+  gap: 3px;
+  color: #dff0ff;
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.heritage-sigil img {
+  width: 94px;
+  aspect-ratio: 1;
+  margin-inline: auto;
+  border: 1px solid rgba(152,209,255,0.42);
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: 50% 32%;
+  filter: saturate(0.7) contrast(1.12) brightness(1.05);
+  box-shadow: 0 0 32px rgba(83,164,255,0.28);
+  animation: hologram-breathe 8s ease-in-out infinite alternate;
+}
+
+.heritage-sigil small { color: var(--cyan); font-size: 0.58rem; }
+
+.cosmic-hero .hero-content { z-index: 2; max-width: 830px; }
+.cosmic-hero .hero-content h1 { letter-spacing: 0.05em; }
+.cosmic-hero .hero-content h2 { max-width: 700px; font-size: clamp(2.7rem, 6vw, 6.4rem); }
+
+.heritage-section,
+.citizen-section {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(420px, 1.1fr);
+  gap: 40px;
+  align-items: center;
+}
+
+.heritage-section {
+  min-height: 660px;
+  width: min(1320px, calc(100% - 40px));
+}
+
+.heritage-copy h2,
+.citizen-section h2 { font-size: clamp(2.5rem, 5vw, 5.6rem); }
+.heritage-copy > p:not(.eyebrow), .citizen-section p { color: var(--muted); line-height: 1.75; max-width: 600px; }
+.heritage-copy > p:nth-of-type(2) { color: var(--cyan); font-size: 1.4rem; }
+
+.heritage-portrait-wrap {
+  position: relative;
+  min-height: 560px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid rgba(143,203,255,0.22);
+  background: radial-gradient(circle at 50% 40%, rgba(40,119,228,0.24), transparent 42%), #040818;
+}
+
+.heritage-portrait-wrap::before {
+  content: "";
+  position: absolute;
+  inset: 8%;
+  border: 1px solid rgba(143,203,255,0.28);
+  border-radius: 50%;
+  animation: spin 54s linear infinite;
+}
+
+.heritage-portrait-wrap img {
+  width: min(92%, 650px);
+  mix-blend-mode: screen;
+  filter: saturate(0.7) contrast(1.16);
+  animation: portrait-turn 18s ease-in-out infinite alternate;
+}
+
+.award-section { width: min(980px, calc(100% - 40px)); text-align: center; }
+.award-section .section-header p { margin-inline: auto; }
+.award-timeline { display: flex; justify-content: center; gap: 8px; margin: 34px 0; }
+.award-timeline button {
+  min-width: 76px;
+  min-height: 48px;
+  border: 1px solid var(--line);
+  border-radius: 0;
+  color: var(--muted);
+  background: transparent;
+}
+.award-timeline button.is-active { color: #fff; border-color: var(--cyan); background: rgba(143,203,255,0.12); box-shadow: 0 0 28px rgba(90,170,255,0.14); }
+.award-record { min-height: 210px; padding: 38px; border: 1px solid var(--line); background: rgba(7,15,35,0.72); }
+.award-record h3 { margin: 12px 0; font-size: 1.7rem; }
+.award-record p:not(.eyebrow) { max-width: 580px; margin-inline: auto; color: var(--muted); line-height: 1.7; }
+
+.citizen-section {
+  width: min(1320px, calc(100% - 40px));
+  min-height: 520px;
+  border-block: 1px solid var(--line);
+}
+
+.citizen-galaxy { position: relative; min-height: 350px; display: grid; place-items: center; }
+.citizen-galaxy span { position: absolute; border: 1px solid rgba(143,203,255,0.34); border-radius: 50%; animation: orbit-turn 24s linear infinite; }
+.citizen-galaxy span:nth-child(1) { width: 300px; height: 300px; }
+.citizen-galaxy span:nth-child(2) { width: 220px; height: 220px; animation-duration: 17s; animation-direction: reverse; }
+.citizen-galaxy span:nth-child(3) { width: 120px; height: 120px; background: radial-gradient(circle, rgba(200,230,255,0.75), rgba(83,164,255,0.12) 38%, transparent 70%); border: 0; }
+
+.citizen-orbit { min-height: 340px; display: grid; place-items: center; position: relative; color: var(--cyan); border: 1px solid var(--line); background: rgba(9,19,43,0.7); }
+.citizen-orbit svg:first-child { position: absolute; animation: spin 24s linear infinite; opacity: 0.6; }
+
+@keyframes hologram-breathe { to { transform: translateY(-5px); filter: saturate(1) contrast(1.2) brightness(1.18); } }
+@keyframes portrait-turn { to { transform: perspective(900px) rotateY(7deg) translateY(-9px); } }
+
+@media (max-width: 760px) {
+  .heritage-sigil { right: 14px; top: 90px; width: 70px; font-size: 0.48rem; }
+  .heritage-sigil img { width: 56px; }
+  .heritage-sigil small { display: none; }
+  .cosmic-hero .hero-content { margin-left: 0; }
+  .cosmic-hero .hero-content h2 { font-size: clamp(2.3rem, 12vw, 3.8rem); }
+  .heritage-section, .citizen-section { grid-template-columns: 1fr; width: min(100% - 28px, 1320px); min-height: auto; }
+  .heritage-section { padding-block: 64px; }
+  .heritage-portrait-wrap { min-height: 380px; }
+  .award-section { width: min(100% - 28px, 980px); }
+  .award-record { padding: 26px 18px; }
+  .award-timeline { overflow-x: auto; justify-content: flex-start; padding-bottom: 4px; }
+  .citizen-section { padding-block: 64px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cosmic-canvas { display: none; }
+  .cosmic-hero { background: url("../assets/observatory-hero.png") center / cover; }
+}
+
 .star-layer {
   position: absolute;
   inset: 0;

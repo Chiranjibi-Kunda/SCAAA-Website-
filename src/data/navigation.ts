@@ -15,6 +15,11 @@ export const navGroups = [
     children: ["Beginner's Guide", "Observing the Night Sky", "Telescope Basics", "Deep Sky Objects", "Citizen Science"],
   },
   {
+    label: "Citizen Science",
+    href: "/citizen-science",
+    children: ["SCAAA x RAD@home", "How to Participate", "Scientific Impact"],
+  },
+  {
     label: "Outreach Programs",
     href: "/outreach",
     children: ["School Programs", "College Programs", "Science Festivals", "Community Outreach", "Request Outreach"],

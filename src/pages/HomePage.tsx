@@ -1,3 +1,4 @@
+import { lazy, Suspense, useState } from "react";
 import type { CSSProperties } from "react";
 import { ArrowRight, Globe2, Moon, RadioTower, Sparkles, Telescope } from "lucide-react";
 import { articles, celestialEvent, events, gallery, imagery, impactStats, outreachPrograms } from "../data/content";
@@ -5,17 +6,29 @@ import { t, tr } from "../lib/i18n";
 import type { Locale } from "../types/content";
 import { Link } from "../components/Link";
 import { ArticleCard, EventCard, PlaceholderBanner, SectionHeader } from "../components/Sections";
+import { samantaChandrasekharAwards } from "../data/awards";
+import hologramPortrait from "../assets/samanta-chandrasekhar-hologram.png";
+
+const CosmicEnvironment = lazy(() => import("../components/CosmicEnvironment").then((module) => ({ default: module.CosmicEnvironment })));
 
 export default function HomePage({ locale }: { locale: Locale }) {
+  const [awardIndex, setAwardIndex] = useState(0);
+  const award = samantaChandrasekharAwards[awardIndex];
   return (
     <>
-      <section className="hero">
-        <div className="star-layer" />
+      <section className="hero cosmic-hero">
+        <Suspense fallback={null}><CosmicEnvironment /></Suspense>
+        <div className="cosmic-veil" />
+        <aside className="heritage-sigil">
+          <img src={hologramPortrait} alt="Holographic interpretation of Samanta Chandrasekhar" />
+          <span>Samanta Chandrasekhar</span>
+          <small>ସାମନ୍ତ ଚନ୍ଦ୍ରଶେଖର</small>
+        </aside>
         <div className="hero-content">
-          <p className="eyebrow">{t(locale, "eyebrow")}</p>
+          <p className="eyebrow">From Odisha to the Stars · Since 1993</p>
           <h1>SCAAA</h1>
           <p className="hero-full-name">Samanta Chandra Shekhar Amateur Astronomers' Association</p>
-          <h2>{t(locale, "heroTitle")}</h2>
+          <h2>Look Deeper.<br />The Universe Is Listening.</h2>
           <p>{t(locale, "heroCopy")}</p>
           <div className="hero-actions">
             <Link href="/events" className="button">{t(locale, "exploreEvents")} <ArrowRight size={18} /></Link>
@@ -65,6 +78,34 @@ export default function HomePage({ locale }: { locale: Locale }) {
         ))}
       </section>
 
+      <section className="section heritage-section">
+        <div className="heritage-copy">
+          <p className="eyebrow">Scientific Heritage · Odisha</p>
+          <h2>Samanta Chandrasekhar</h2>
+          <p>ସାମନ୍ତ ଚନ୍ଦ୍ରଶେଖର</p>
+          <p>Explore the heritage that inspires SCAAA's continuing work to make astronomy visible, rigorous and accessible.</p>
+          <Link href="/about" className="text-link">Explore Legacy <ArrowRight size={16} /></Link>
+        </div>
+        <div className="heritage-portrait-wrap">
+          <img src={hologramPortrait} alt="Holographic Samanta Chandrasekhar portrait" />
+        </div>
+      </section>
+
+      <section className="section award-section">
+        <SectionHeader eyebrow="Archive" title="Samanta Chandrasekhar Award" copy="An interactive archive prepared for verified awardee records. No recipient information is published until confirmed by SCAAA." />
+        <div className="award-timeline" role="tablist" aria-label="Award archive years">
+          {samantaChandrasekharAwards.map((item, index) => (
+            <button key={item.year} className={index === awardIndex ? "is-active" : ""} onClick={() => setAwardIndex(index)} role="tab" aria-selected={index === awardIndex}>{item.year}</button>
+          ))}
+        </div>
+        <article className="award-record">
+          <p className="eyebrow">{award.awardDescription} · {award.year}</p>
+          <h3>{award.awardeeName}</h3>
+          <p>{award.details}</p>
+          <span className="tag tag-warm">Verified details required</span>
+        </article>
+      </section>
+
       <section className="section">
         <SectionHeader eyebrow={tr(locale, "Astrophotography")} title={tr(locale, "Image of the Month")} copy="A visual gallery prepared for member astrophotography, object metadata and equipment details." />
         <div className="image-feature">
@@ -100,6 +141,16 @@ export default function HomePage({ locale }: { locale: Locale }) {
           ))}
         </div>
         <Link href="/outreach" className="button">{tr(locale, "Request an Outreach Program")}</Link>
+      </section>
+
+      <section className="section citizen-section">
+        <div>
+          <p className="eyebrow">Citizen Science</p>
+          <h2>Galaxy. Data. People. Discovery.</h2>
+          <p>SCAAA x RAD@home collaboration information and participation pathways will be published from verified programme data.</p>
+          <Link href="/citizen-science" className="button button-secondary">Explore Citizen Science</Link>
+        </div>
+        <div className="citizen-galaxy" aria-hidden="true"><span /><span /><span /></div>
       </section>
 
       <section className="section cta-band">

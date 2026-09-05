@@ -15,7 +15,7 @@ interface NavbarProps {
 export function Navbar({ locale, onLocaleChange, onSearch }: NavbarProps) {
   const [open, setOpen] = useState(false);
   const activeLocale = useLocale();
-  const primaryGroups = navGroups.filter((group) => ["About Us", "Learn Astronomy", "Outreach Programs"].includes(group.label));
+  const primaryGroups = navGroups.filter((group) => ["About Us", "Learn Astronomy", "Citizen Science", "Outreach Programs"].includes(group.label));
   const moreGroups = navGroups.filter((group) => !primaryGroups.includes(group));
 
   return (

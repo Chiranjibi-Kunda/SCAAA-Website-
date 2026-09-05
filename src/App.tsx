@@ -9,6 +9,7 @@ import { events, articles, gallery, publications } from "./data/content";
 import AboutPage from "./pages/AboutPage";
 import AstrophotographyPage from "./pages/AstrophotographyPage";
 import ContactPage from "./pages/ContactPage";
+import CitizenSciencePage from "./pages/CitizenSciencePage";
 import EventsPage from "./pages/EventsPage";
 import HomePage from "./pages/HomePage";
 import LearnPage from "./pages/LearnPage";
@@ -24,6 +25,7 @@ const routeTitles: Record<string, string> = {
   "/about": "About SCAAA | Since 1993",
   "/events": "Events & Activities | SCAAA",
   "/learn": "Learn Astronomy | SCAAA",
+  "/citizen-science": "Citizen Science | SCAAA",
   "/outreach": "Outreach Programs | SCAAA",
   "/astrophotography": "Astrophotography | SCAAA",
   "/membership": "Membership | SCAAA",
@@ -93,6 +95,8 @@ export default function App() {
         return <EventsPage />;
       case "/learn":
         return <LearnPage />;
+      case "/citizen-science":
+        return <CitizenSciencePage />;
       case "/outreach":
         return <OutreachPage />;
       case "/astrophotography":
