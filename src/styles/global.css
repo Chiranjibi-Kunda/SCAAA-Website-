@@ -310,7 +310,7 @@ textarea {
 .hero-hologram {
   position: absolute;
   z-index: 1;
-  left: max(14px, calc((100vw - 1400px) / 2));
+  left: max(10px, calc((100vw - 1420px) / 2));
   top: 82px;
   width: min(28vw, 352px);
   min-width: 260px;
@@ -342,25 +342,28 @@ textarea {
 .citizen-section p { color: var(--muted); line-height: 1.75; max-width: 600px; }
 
 .hologram-person { z-index: 2; clip-path: inset(0 0 17% 0); filter: drop-shadow(0 0 20px rgba(64, 164, 255, 0.52)); }
-.hologram-disk { z-index: 1; clip-path: inset(76% 0 0); transform-origin: 50% 88%; animation: hologram-disk-turn 22s linear infinite; filter: drop-shadow(0 0 12px rgba(64, 164, 255, 0.42)); }
+.hologram-disk { z-index: 1; clip-path: inset(76% 0 0); filter: drop-shadow(0 0 12px rgba(64, 164, 255, 0.42)); }
 
 @media (min-width: 901px) {
   .hero .hero-content {
     align-self: end;
     max-width: min(760px, calc(100vw - 64px));
     margin-left: max(0px, calc((100vw - 1280px) / 2));
+    margin-top: 370px;
   }
 
   .hero h1 {
-    font-size: clamp(3.6rem, 6vw, 5.8rem);
+    font-size: clamp(3.25rem, 5.2vw, 5rem);
     line-height: 0.92;
   }
 
   .hero h2 {
     margin-top: 12px;
-    font-size: clamp(2rem, 3.4vw, 3.4rem);
+    font-size: clamp(1.85rem, 2.9vw, 2.9rem);
     line-height: 1.02;
   }
+
+  .hero-content > p:last-of-type { font-size: 0.98rem; line-height: 1.55; }
 }
 
 .award-section { width: min(980px, calc(100% - 40px)); text-align: center; }
@@ -394,8 +397,6 @@ textarea {
 .citizen-orbit { min-height: 340px; display: grid; place-items: center; position: relative; color: var(--cyan); border: 1px solid var(--line); background: rgba(9,19,43,0.7); }
 .citizen-orbit svg:first-child { position: absolute; animation: spin 24s linear infinite; opacity: 0.6; }
 
-@keyframes hologram-disk-turn { to { transform: perspective(900px) rotateY(360deg); } }
-
 @media (max-width: 760px) {
   .hero-hologram { left: auto; right: -20px; top: 88px; width: min(44vw, 220px); min-width: 0; opacity: 0.72; }
   .citizen-section { grid-template-columns: 1fr; width: min(100% - 28px, 1320px); min-height: auto; }
@@ -403,10 +404,6 @@ textarea {
   .award-record { padding: 26px 18px; }
   .award-timeline { overflow-x: auto; justify-content: flex-start; padding-bottom: 4px; }
   .citizen-section { padding-block: 64px; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hologram-disk { animation: none; }
 }
 
 .star-layer {
