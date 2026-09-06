@@ -492,7 +492,7 @@ h3 {
   position: relative;
   z-index: 3;
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: minmax(0, 0.9fr) minmax(420px, 1.1fr);
   gap: 24px;
   align-items: center;
   padding: 28px;
@@ -511,22 +511,32 @@ h3 {
   font-size: clamp(2rem, 4vw, 3.6rem);
 }
 
-.moon-widget {
+.source-link {
+  display: inline-flex;
+  margin-top: 12px;
+  color: var(--cyan);
+  font-size: 0.9rem;
+  font-weight: 750;
+}
+
+.monthly-sky-list {
   display: grid;
-  gap: 12px;
-  place-items: center;
-  min-width: 220px;
-  padding: 22px;
+  gap: 10px;
+  padding: 16px;
   border: 1px solid rgba(143,203,255,0.28);
   border-radius: 8px;
   background: rgba(255,255,255,0.05);
-  color: var(--cyan);
-  text-align: center;
-  transition: transform 350ms ease, background 350ms ease, border-color 350ms ease;
 }
 
+.monthly-sky-list > svg { color: var(--cyan); }
+.monthly-sky-list article { display: grid; grid-template-columns: 64px 1fr; gap: 12px; align-items: start; }
+.monthly-sky-list time { color: var(--cyan); font-size: 0.82rem; font-weight: 800; letter-spacing: 0.05em; }
+.monthly-sky-list strong { display: block; font-size: 0.98rem; }
+.monthly-sky-list p { margin: 3px 0 0; color: var(--muted); font-size: 0.88rem; line-height: 1.45; }
+.monthly-sky-empty { margin: 0; }
+
 .featured-band:hover { transform: translateY(-5px); border-color: rgba(143,203,255,0.46); box-shadow: 0 24px 70px rgba(31,119,215,0.18); }
-.featured-band:hover .moon-widget { transform: rotate(4deg) scale(1.04); background: rgba(143,203,255,0.12); }
+.featured-band:hover .monthly-sky-list { background: rgba(143,203,255,0.08); }
 
 .section {
   padding: 86px 0;
@@ -1322,6 +1332,7 @@ h3 {
   }
 
   .featured-band { margin-top: -28px; padding: 22px; gap: 18px; }
+  .featured-band { grid-template-columns: 1fr; }
 
   .section { padding: 64px 0; }
 

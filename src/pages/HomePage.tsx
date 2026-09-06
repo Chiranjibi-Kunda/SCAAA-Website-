@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import type { CSSProperties } from "react";
 import { ArrowRight, Globe2, Moon, RadioTower, Sparkles, Telescope } from "lucide-react";
-import { articles, celestialEvent, events, gallery, imagery, impactStats, outreachPrograms } from "../data/content";
+import { articles, events, gallery, imagery, impactStats, outreachPrograms } from "../data/content";
+import { astronomyCalendarSource, getCurrentMonthSkyCalendar } from "../data/monthlySkyEvents";
 import { t, tr } from "../lib/i18n";
 import type { Locale } from "../types/content";
 import { Link } from "../components/Link";
@@ -12,6 +13,7 @@ import hologramPortrait from "../assets/samanta-chandrasekhar-hologram.png";
 export default function HomePage({ locale }: { locale: Locale }) {
   const [awardIndex, setAwardIndex] = useState(0);
   const award = samantaChandrasekharAwards[awardIndex];
+  const skyCalendar = useMemo(() => getCurrentMonthSkyCalendar(), []);
 
   return (
     <>
@@ -38,13 +40,19 @@ export default function HomePage({ locale }: { locale: Locale }) {
 
       <section className="featured-band">
         <div>
-          <p className="eyebrow">{tr(locale, celestialEvent.label)}</p>
-          <h2>{celestialEvent.title}</h2>
-          <p>{celestialEvent.detail}</p>
+          <p className="eyebrow">Sky Calendar</p>
+          <h2>{skyCalendar.label} Observing Highlights</h2>
+          <p>Current-month celestial events curated from the annual Timeanddate astronomy calendar.</p>
+          <a className="source-link" href={astronomyCalendarSource} target="_blank" rel="noreferrer">View source calendar</a>
         </div>
-        <div className="moon-widget" aria-label="Reusable sky tonight module">
+        <div className="monthly-sky-list" aria-label={`Astronomy events for ${skyCalendar.label}`}>
           <Moon />
-          <span>{celestialEvent.date}</span>
+          {skyCalendar.events.length > 0 ? skyCalendar.events.map((event) => (
+            <article key={event.date}>
+              <time dateTime={event.date}>{new Intl.DateTimeFormat("en-IN", { day: "numeric", month: "short", timeZone: "Asia/Kolkata" }).format(new Date(`${event.date}T00:00:00Z`))}</time>
+              <div><strong>{event.title}</strong><p>{event.detail}</p></div>
+            </article>
+          )) : <p className="monthly-sky-empty">This calendar is awaiting its annual source update.</p>}
         </div>
       </section>
 
