@@ -310,8 +310,8 @@ textarea {
 .hero-hologram {
   position: absolute;
   z-index: 1;
-  left: max(18px, calc((100vw - 1360px) / 2));
-  top: 94px;
+  left: max(14px, calc((100vw - 1400px) / 2));
+  top: 82px;
   width: min(28vw, 352px);
   min-width: 260px;
   pointer-events: none;
@@ -346,8 +346,20 @@ textarea {
 
 @media (min-width: 901px) {
   .hero .hero-content {
-    max-width: 700px;
-    margin-left: max(380px, calc((100vw - 1280px) / 2 + 370px));
+    align-self: end;
+    max-width: min(760px, calc(100vw - 64px));
+    margin-left: max(0px, calc((100vw - 1280px) / 2));
+  }
+
+  .hero h1 {
+    font-size: clamp(3.6rem, 6vw, 5.8rem);
+    line-height: 0.92;
+  }
+
+  .hero h2 {
+    margin-top: 12px;
+    font-size: clamp(2rem, 3.4vw, 3.4rem);
+    line-height: 1.02;
   }
 }
 
@@ -382,7 +394,7 @@ textarea {
 .citizen-orbit { min-height: 340px; display: grid; place-items: center; position: relative; color: var(--cyan); border: 1px solid var(--line); background: rgba(9,19,43,0.7); }
 .citizen-orbit svg:first-child { position: absolute; animation: spin 24s linear infinite; opacity: 0.6; }
 
-@keyframes hologram-disk-turn { to { transform: rotate(360deg); } }
+@keyframes hologram-disk-turn { to { transform: perspective(900px) rotateY(360deg); } }
 
 @media (max-width: 760px) {
   .hero-hologram { left: auto; right: -20px; top: 88px; width: min(44vw, 220px); min-width: 0; opacity: 0.72; }
