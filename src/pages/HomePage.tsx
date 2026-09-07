@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import type { CSSProperties } from "react";
-import { ArrowRight, Globe2, Moon, RadioTower, Sparkles, Telescope } from "lucide-react";
+import { ArrowRight, Globe2, ImageOff, Moon, RadioTower, Sparkles, Telescope } from "lucide-react";
 import { articles, events, gallery, imagery, impactStats, outreachPrograms } from "../data/content";
 import { astronomyCalendarSource, getCurrentMonthSkyCalendar } from "../data/monthlySkyEvents";
 import { t, tr } from "../lib/i18n";
@@ -86,17 +86,30 @@ export default function HomePage({ locale }: { locale: Locale }) {
       </section>
 
       <section className="section award-section">
-        <SectionHeader eyebrow="Archive" title="Samanta Chandrasekhar Award" copy="An interactive archive prepared for verified awardee records. No recipient information is published until confirmed by SCAAA." />
+        <SectionHeader eyebrow="Archive" title="Samanta Chandrasekhar Award" copy="Annual award records from the inaugural Silver Jubilee year onward. Office-bearer details, profiles, and missing ceremony photographs are clearly marked until verified by SCAAA." />
         <div className="award-timeline" role="tablist" aria-label="Award archive years">
           {samantaChandrasekharAwards.map((item, index) => (
             <button key={item.year} className={index === awardIndex ? "is-active" : ""} onClick={() => setAwardIndex(index)} role="tab" aria-selected={index === awardIndex}>{item.year}</button>
           ))}
         </div>
         <article className="award-record">
-          <p className="eyebrow">{award.awardDescription} · {award.year}</p>
-          <h3>{award.awardeeName}</h3>
-          <p>{award.details}</p>
-          <span className="tag tag-warm">Verified details required</span>
+          <div className="award-record-head">
+            <div><p className="eyebrow">Samanta Chandrasekhar Award · {award.year}</p><h3>{award.occasion}</h3></div>
+            <dl className="award-office-bearers"><div><dt>President</dt><dd>{award.officeBearers.president}</dd></div><div><dt>Secretary</dt><dd>{award.officeBearers.secretary}</dd></div></dl>
+          </div>
+          <div className="awardee-grid">
+            {award.recipients.map((recipient) => (
+              <article className="awardee-card" key={recipient.name}>
+                {recipient.photo ? <img src={recipient.photo} alt={recipient.name} /> : <div className="awardee-photo-placeholder"><ImageOff size={22} /><span>Photograph to be added</span></div>}
+                <div><h4>{recipient.name}</h4><p>{recipient.profileLines[0]}</p><p>{recipient.profileLines[1]}</p></div>
+              </article>
+            ))}
+          </div>
+          {award.video && <div className="award-video"><iframe src={award.video.embedUrl} title={award.video.title} loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen /></div>}
+          <div className="award-ceremony">
+            <p className="eyebrow">Annual Function Gallery</p>
+            {award.eventPhotos.length > 0 ? <div className="award-photo-grid">{award.eventPhotos.map((photo, index) => <img src={photo} alt={`${award.year} Samanta Chandrasekhar Award annual function ${index + 1}`} key={photo} />)}</div> : <div className="award-event-placeholder"><ImageOff size={20} /><span>Annual function photographs to be added after verification.</span></div>}
+          </div>
         </article>
       </section>
 
