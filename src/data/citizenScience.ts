@@ -17,7 +17,7 @@ export const radAtHomeWorkshops = [
     venue: "Institute of Physics (IOP)",
     lead: "Workshop by Dr. Ananda Hota",
     copy: "The workshop introduced RGB image work in a shared learning setting, bringing participants together around astronomical images and the methods used to read them.",
-    photographNote: "Workshop record: RGB workshop by Dr. Ananda Hota at RAD@SCAAA on 26 March 2017 at IOP, with acknowledgements to Profs. L. Satpathy and Suresh Patra, Dr. Subhendu Pattanaik, and Mr. Prasant Das.",
+    photographNote: "Workshop record: RGB workshop by Dr. Ananda Hota at RAD@SCAAA on 26 March 2017 at IOP, held in the presence of Profs. L. Satpathy and Suresh Patra, Dr. Subhendu Pattanaik, and Mr. Prasant Das.",
     images: [{ src: workshop2017, alt: "2017 RAD@SCAAA RGB workshop group photograph" }],
   },
   {

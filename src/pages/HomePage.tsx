@@ -23,7 +23,6 @@ export default function HomePage({ locale }: { locale: Locale }) {
           <div className="hologram-figure">
             <img className="hologram-disk" src={hologramPortrait} alt="" aria-hidden="true" />
             <img className="hologram-person" src={hologramPortrait} alt="Holographic interpretation of Samanta Chandrasekhar" />
-            <span className="hologram-label" lang="or">ସାମନ୍ତ ଚନ୍ଦ୍ରଶେଖର</span>
           </div>
         </aside>
         <div className="hero-content">

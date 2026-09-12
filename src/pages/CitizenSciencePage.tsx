@@ -1,6 +1,7 @@
-import { ArrowUpRight, Database, Radio, Telescope, UsersRound } from "lucide-react";
+import { ArrowUpRight, Database, Telescope, UsersRound } from "lucide-react";
 import { PageHero, SectionHeader } from "../components/Sections";
 import { radAtHomeSource, radAtHomeSummary, radAtHomeWorkshops } from "../data/citizenScience";
+import radLogo from "../assets/rad-at-home-logo.png";
 
 const waysToContribute = [
   { icon: Telescope, title: "Observe", copy: "Build practical familiarity with the night sky, telescopes, images, and astronomical questions." },
@@ -18,11 +19,11 @@ export default function CitizenSciencePage() {
           <SectionHeader eyebrow="RAD@home India" title={radAtHomeSummary.title} copy={radAtHomeSummary.copy} />
           <a className="text-link" href={radAtHomeSource} target="_blank" rel="noreferrer">Visit RAD@home India <ArrowUpRight size={16} /></a>
         </div>
-        <aside className="citizen-signal" aria-hidden="true"><Radio size={56} /><span /><span /><span /></aside>
+        <aside className="citizen-signal"><span /><span /><span /><img src={radLogo} alt="RAD@home logo" /></aside>
       </section>
 
       <section className="section citizen-workshops">
-        <SectionHeader eyebrow="SCAAA Workshop Record" title="Two Workshops, One Continuing Conversation" copy="These records are drawn from the supplied workshop photographs and poster material. The 2017 workshop caption is preserved as page text so the group photograph can be viewed cleanly." />
+        <SectionHeader eyebrow="SCAAA Workshop Record" title="Two Workshops, One Continuing Conversation" copy="SCAAA has welcomed RAD@home learners and mentors into local spaces for hands-on astronomy learning. The 2017 and 2024 workshops reflect the association's continuing role in bringing observational practice, image analysis, and research-led scientific curiosity to the Bhubaneswar community." />
         <div className="workshop-timeline">
           {radAtHomeWorkshops.map((workshop) => (
             <article className="workshop-record" key={workshop.year}>

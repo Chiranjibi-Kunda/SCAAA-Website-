@@ -343,28 +343,6 @@ textarea {
 
 .hologram-person { z-index: 2; clip-path: inset(0 0 17% 0); filter: drop-shadow(0 0 20px rgba(64, 164, 255, 0.52)); }
 .hologram-disk { z-index: 1; clip-path: inset(76% 0 0); filter: drop-shadow(0 0 12px rgba(64, 164, 255, 0.42)); }
-.hologram-label {
-  position: absolute;
-  z-index: 3;
-  left: 50%;
-  bottom: 3.5%;
-  width: 47%;
-  padding: 1px 3px;
-  overflow: hidden;
-  color: #d7f8ff;
-  background: linear-gradient(90deg, rgba(9, 48, 111, 0.98), rgba(16, 91, 181, 0.96), rgba(9, 48, 111, 0.98));
-  border-radius: 50%;
-  box-shadow: 0 0 8px rgba(107, 220, 255, 0.68);
-  font-family: "Noto Sans Oriya", "Nirmala UI", sans-serif;
-  font-size: clamp(0.42rem, 0.92vw, 0.68rem);
-  font-weight: 700;
-  line-height: 1.1;
-  text-align: center;
-  text-shadow: 0 0 5px rgba(164, 244, 255, 0.9);
-  white-space: nowrap;
-  transform: translateX(-50%) scaleY(0.82);
-}
-
 @media (min-width: 901px) {
   .hero .hero-content {
     align-self: center;
@@ -435,11 +413,11 @@ textarea {
 
 .citizen-intro { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 40px; align-items: center; border-bottom: 1px solid var(--line); }
 .citizen-signal { min-height: 220px; display: grid; place-items: center; position: relative; color: var(--cyan); border: 1px solid var(--line); background: rgba(8, 17, 39, 0.6); }
-.citizen-signal svg { position: relative; z-index: 1; }
 .citizen-signal span { position: absolute; border: 1px solid rgba(143,203,255,0.28); border-radius: 50%; }
 .citizen-signal span:nth-of-type(1) { width: 84px; height: 84px; }
 .citizen-signal span:nth-of-type(2) { width: 134px; height: 134px; }
 .citizen-signal span:nth-of-type(3) { width: 188px; height: 188px; }
+.citizen-signal img { position: relative; z-index: 1; width: min(72%, 196px); max-height: 180px; object-fit: contain; filter: drop-shadow(0 0 12px rgba(143,203,255,0.26)); }
 
 .citizen-workshops { padding-top: 72px; }
 .workshop-timeline { display: grid; gap: 0; border-top: 1px solid var(--line); }
