@@ -64,6 +64,11 @@ function usePath() {
 export function navigateTo(href: string) {
   window.history.pushState({}, "", toAppHref(href));
   window.dispatchEvent(new PopStateEvent("popstate"));
+  const anchor = href.split("#")[1];
+  if (anchor) {
+    requestAnimationFrame(() => document.getElementById(anchor)?.scrollIntoView({ behavior: "smooth" }));
+    return;
+  }
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 

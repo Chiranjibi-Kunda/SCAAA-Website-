@@ -12,7 +12,7 @@ export const navGroups = [
   {
     label: "Learn Astronomy",
     href: "/learn",
-    children: ["Beginner's Guide", "Observing the Night Sky", "Telescope Basics", "Deep Sky Objects", "Citizen Science"],
+    children: ["Beginner's Guide", "Observing the Night Sky", "Telescope Basics", "Deep Sky Objects", "SCAAA Newsletter"],
   },
   {
     label: "Citizen Science",

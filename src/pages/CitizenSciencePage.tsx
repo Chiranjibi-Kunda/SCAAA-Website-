@@ -19,7 +19,7 @@ export default function CitizenSciencePage() {
           <SectionHeader eyebrow="RAD@home India" title={radAtHomeSummary.title} copy={radAtHomeSummary.copy} />
           <a className="text-link" href={radAtHomeSource} target="_blank" rel="noreferrer">Visit RAD@home India <ArrowUpRight size={16} /></a>
         </div>
-        <aside className="citizen-signal"><span /><span /><span /><img src={radLogo} alt="RAD@home logo" /></aside>
+        <aside className="citizen-signal"><img src={radLogo} alt="RAD@home logo" /></aside>
       </section>
 
       <section className="section citizen-workshops">

@@ -36,7 +36,7 @@ export function Navbar({ locale, onLocaleChange, onSearch }: NavbarProps) {
               <Link href={group.href} className="nav-link">{tr(activeLocale, group.label)}</Link>
               <div className="mega-menu">
                 {group.children.map((child) => (
-                  <Link href={group.href} key={child}>{child}</Link>
+                  <Link href={group.label === "Learn Astronomy" && child === "SCAAA Newsletter" ? "/learn#newsletter" : group.href} key={child}>{child}</Link>
                 ))}
               </div>
             </div>
@@ -79,6 +79,7 @@ export function Navbar({ locale, onLocaleChange, onSearch }: NavbarProps) {
         {navGroups.map((group) => (
           <Link href={group.href} key={group.label} onClick={() => setOpen(false)}>{tr(activeLocale, group.label)}</Link>
         ))}
+        <Link href="/learn#newsletter" onClick={() => setOpen(false)}>SCAAA Newsletter</Link>
       </div>
     </header>
   );

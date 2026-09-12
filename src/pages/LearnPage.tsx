@@ -1,4 +1,5 @@
 import { ExternalLink, FileText, ScanText } from "lucide-react";
+import { useEffect } from "react";
 import { articles, imagery } from "../data/content";
 import { newsletters } from "../data/newsletters";
 import { ArticleCard, PageHero, SectionHeader } from "../components/Sections";
@@ -8,6 +9,13 @@ const categories = ["Start Here", "Observe", "Explore", "Create", "Participate"]
 
 export default function LearnPage() {
   const locale = useLocale();
+
+  useEffect(() => {
+    if (window.location.hash === "#newsletter") {
+      requestAnimationFrame(() => document.getElementById("newsletter")?.scrollIntoView({ behavior: "smooth" }));
+    }
+  }, []);
+
   return (
     <>
       <PageHero eyebrow={tr(locale, "Learn Astronomy")} title={tr(locale, "A Practical Astronomy Learning Hub")} copy="Structured for beginner guides, telescope basics, observing notes, astrophotography tutorials and citizen science resources." image={imagery.workshop} />
@@ -16,7 +24,7 @@ export default function LearnPage() {
         <SectionHeader title={tr(locale, "Featured Lessons")} />
         <div className="card-grid three">{articles.map((article) => <ArticleCard article={article} key={article.id} />)}</div>
       </section>
-      <section className="section learn-newsletters">
+      <section className="section learn-newsletters" id="newsletter">
         <SectionHeader eyebrow="SCAAA Newsletter" title="Newsletter Archive" copy="A year-wise record of the SCAAA newsletters currently available in the supplied archive. New verified issues can be added here as the collection grows." />
         <div className="newsletter-archive">
           {newsletters.map((issue) => (

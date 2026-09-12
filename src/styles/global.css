@@ -412,11 +412,7 @@ textarea {
 .citizen-orbit svg:first-child { position: absolute; animation: spin 24s linear infinite; opacity: 0.6; }
 
 .citizen-intro { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 40px; align-items: center; border-bottom: 1px solid var(--line); }
-.citizen-signal { min-height: 220px; display: grid; place-items: center; position: relative; color: var(--cyan); border: 1px solid var(--line); background: rgba(8, 17, 39, 0.6); }
-.citizen-signal span { position: absolute; border: 1px solid rgba(143,203,255,0.28); border-radius: 50%; }
-.citizen-signal span:nth-of-type(1) { width: 84px; height: 84px; }
-.citizen-signal span:nth-of-type(2) { width: 134px; height: 134px; }
-.citizen-signal span:nth-of-type(3) { width: 188px; height: 188px; }
+.citizen-signal { min-height: 220px; display: grid; place-items: center; }
 .citizen-signal img { position: relative; z-index: 1; width: min(72%, 196px); max-height: 180px; object-fit: contain; filter: drop-shadow(0 0 12px rgba(143,203,255,0.26)); }
 
 .citizen-workshops { padding-top: 72px; }
@@ -459,9 +455,6 @@ textarea {
   .citizen-section { grid-template-columns: 1fr; width: min(100% - 28px, 1320px); min-height: auto; }
   .citizen-intro { grid-template-columns: 1fr; gap: 24px; }
   .citizen-signal { min-height: 160px; }
-  .citizen-signal span:nth-of-type(3) { width: 130px; height: 130px; }
-  .citizen-signal span:nth-of-type(2) { width: 92px; height: 92px; }
-  .citizen-signal span:nth-of-type(1) { width: 56px; height: 56px; }
   .workshop-record { grid-template-columns: 1fr; gap: 16px; padding: 28px 0; }
   .workshop-meta { grid-template-columns: auto 1fr; align-items: baseline; gap: 12px; }
   .workshop-meta strong { font-size: 1.9rem; }
