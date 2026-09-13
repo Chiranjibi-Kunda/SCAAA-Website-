@@ -501,6 +501,8 @@ textarea {
   text-transform: uppercase;
 }
 
+.hero-establishment { display: flex; align-items: center; gap: 0.5rem; }
+
 h1,
 h2,
 h3 {
@@ -1358,6 +1360,18 @@ h3 {
   .hero h1 {
     font-size: clamp(3.6rem, 18vw, 5rem);
   }
+
+  .hero-establishment {
+    display: grid;
+    gap: 3px;
+    width: calc(100% - min(44vw, 220px));
+    max-width: calc(100% - min(44vw, 220px));
+    font-size: 0.64rem;
+    letter-spacing: 0.08em;
+    line-height: 1.25;
+  }
+
+  .hero-establishment-separator { display: none; }
 
   .hero h2 { font-size: clamp(2rem, 10vw, 3rem); }
 

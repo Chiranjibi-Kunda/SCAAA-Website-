@@ -26,7 +26,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
           </div>
         </aside>
         <div className="hero-content">
-          <p className="eyebrow">{t(locale, "eyebrow")}</p>
+          <p className="eyebrow hero-establishment"><span>Established 1993</span><span className="hero-establishment-separator" aria-hidden="true">·</span><span>Bhubaneswar, Odisha</span></p>
           <h1>SCAAA</h1>
           <p className="hero-full-name">Samanta Chandra Shekhar Amateur Astronomers' Association</p>
           <h2>{t(locale, "heroTitle")}</h2>
